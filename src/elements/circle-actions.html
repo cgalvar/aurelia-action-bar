@@ -1,0 +1,8 @@
+<template>
+    <require from="./circle-actions.css"></require>
+    <require from="./circle-action/circle-action.html"></require>
+    <div class=circle-list>
+        <circle-action class="return" if.bind="_return" option.bind="returnOption"></circle-action>
+        <circle-action repeat.for="option of options" option.bind=option></circle-action>
+    </div>
+</template>

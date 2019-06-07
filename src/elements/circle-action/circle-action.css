@@ -1,0 +1,80 @@
+circle-action {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: white;
+    transition: .3s all;
+    width: .5em;
+    height: .5em;
+    padding: .5em;
+    margin: 0 .5em;
+    font-size: 2rem;
+    cursor: pointer;
+    box-shadow: 0 1px 3px 0px black;
+    
+}
+
+circle-action a, circle-action span {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+circle-action i.material-icons{
+    font-size: inherit;
+}
+
+circle-action.au-enter-active {
+    animation: enter-action-scale .5s;
+    
+}
+
+circle-action.au-leave-active {
+    animation: leave-action-scale .3s;
+    
+}
+
+
+/*circle-action a, circle-action span, .return span {   padding: .5rem;   border-radius: 50%;   background: green;   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.75);   margin: .5rem;   width: 30px;   height: 30px;   display: flex;   justify-content: center;   align-items: center;   text-decoration: none;   cursor: pointer;   transition: .1s all;}*/
+
+circle-action:active {
+    box-shadow: none;
+    transform: scale(.9)
+}
+
+circle-action.return {
+    padding: .5rem;
+    color: white;
+    background: #e44545;
+    
+}
+
+@keyframes enter-action-scale {
+    from {
+        transform: scale(.5);
+        opacity: 0;
+        
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+        
+    }
+    
+}
+
+@keyframes leave-action-scale {
+    from {
+        transform: scale(1);
+        opacity: 1;
+        
+    }
+    to {
+        transform: scale(.5);
+        opacity: 0;
+        
+    }
+    
+}
