@@ -1,11 +1,11 @@
-<template class="au-animate circle-action ${option.className}" bindable=option>
-    <require from=./circle-action.css></require>
+<template class="au-animate circle-action ${option.className || option.icon}">
+    <require from="./circle-action.css"></require>
     
-    <a if.bind=option.href href="#/${option.href}" title.bind="option.title">
+    <a if.bind="option.href" href="#/${option.href}" title.bind="option.title || ''">
         <i class=material-icons>${option.icon}</i>
     </a>
     
-    <span if.bind=option.action click.delegate=option.action() title.bind="option.title">
+    <span if.bind=option.action click.delegate=option.action() title.bind="option.title || ''">
         <i class=material-icons>${option.icon}</i>
     </span>
 </template>

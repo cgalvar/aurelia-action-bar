@@ -6,6 +6,7 @@
     "resources": "../src",
     "elements": "../src/elements",
     "attributes": "../src/attributes",
+    "services": "../src/services",
     "valueConverters": "../src/value-converters",
     "bindingBehaviors": "../src/binding-behaviors"
   },

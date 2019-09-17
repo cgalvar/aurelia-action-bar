@@ -1,24 +1,30 @@
-import {bindable} from 'aurelia-framework';
+import {bindable, autoinject} from 'aurelia-framework';
 import { EventAggregator } from 'aurelia-event-aggregator';
-import {inject} from 'aurelia-framework';
-import { debug } from 'util';
+import { CircleOption } from './circle-action/circle-action';
 
-@inject(EventAggregator)
-export class CircleActions{
+@autoinject
+export class ActionBar{
 
-    @bindable options = [];
+    @bindable options:CircleOption[] = [];
     @bindable onReturn = undefined;
 	
-	_return = false;
+	private _return = false;
 
-	returnOption = undefined;
+	returnOption : CircleOption = {
+		icon: 'close',
+		action: () => {
+			this.return()
+		}
+	};
 
-    constructor(EventAggregator){
-		this.events = EventAggregator;
+	backUpoptions: CircleOption[];
+
+    constructor(private events:EventAggregator){
 		this.onRoute();
 	}
 
-    onRoute(){
+
+    private onRoute(){
 
 		let backUp = this.options;
 
@@ -41,7 +47,7 @@ export class CircleActions{
 		
 	}
 
-	_clear(){
+	private _clear(){
 		this.options = [];
 		this._return = false;
 		this.onReturn = undefined;
@@ -53,9 +59,6 @@ export class CircleActions{
 	 * Si setReturn fue llamado
 	 * Quita la vista de return, y regresa las opciones a su estado anterior
 	 * 
-	 * @memberof CircleActions
-	 * 
-	 * @return {void}
 	 */
 	clearReturn(){
 		
@@ -66,7 +69,7 @@ export class CircleActions{
 
 	}
 
-    setReturn(){
+    setReturn(options:CircleOption[], onReturn:()=>void){
 		
 		if (this._return)
 			return;
@@ -75,47 +78,52 @@ export class CircleActions{
 			this._return = true;
 		}, 300)
 
-		this.backUpoptions = this.options;
+		// las opciones actuales se van al backup
+		this.setBackup();
 
-		this.returnOption = {
-			icon: 'close',
-			action: () => {
-				this.return()
-			}
-		}
+		// se establece la opcion return
+		
 
+		this.setOptions(options);
+
+		this.onReturn = onReturn;
 
 	}
 
     return(){
-		
-		
+			
 		this.clearReturn();
-
-		this.returnOption = {};
 
 		if (this.onReturn)
 			this.onReturn();
 
 	}
 
+	setBackup(){
+		this.backUpoptions = this.options;
+		this.clearOptions();
+	}
 
-
-
+	restoreBackup(){
+		this.options = this.backUpoptions;
+		this.backUpoptions = [];
+	}
 
 	/**
 	 * @memberof CircleActions
 	 */
-	setOptions(options){
-		
-		if(this.options.length){
-			this.options = [];
-		}
-
+	setOptions(options:CircleOption[]){
+		this.clearOptions();
 		// se pone asi para que la animacion en css se ejecute
 		setTimeout(()=>{
 			this.options = options;
 		}, 300);
+	}
+
+	private clearOptions(){
+		if(this.options.length){
+			this.options = [];
+		}
 	}
 
 

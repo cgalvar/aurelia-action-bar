@@ -1,0 +1,16 @@
+action-bar {
+     display: inline-block;
+}
+
+action-bar ul {
+    text-align: center;
+    
+}
+
+.circle-list {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+    
+}
+

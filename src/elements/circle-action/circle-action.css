@@ -78,3 +78,12 @@ circle-action.return {
     }
     
 }
+
+.awaitable{
+    transition: .3s all;
+    transform: scale(1);
+}
+
+.awaitable-hide{
+    transform: scale(0);
+}
