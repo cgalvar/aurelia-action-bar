@@ -143,7 +143,9 @@ export class ActionBar{
 		//this.actions.push(action);
 	}
 
-
+	attached(){
+		this.events.publish('action-bar-attached', this);
+	}
 
 
 }

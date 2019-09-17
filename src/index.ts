@@ -12,3 +12,4 @@ export function configure(config: FrameworkConfiguration) {
 }
 
 export {CircleOption} from "./elements/circle-action/circle-action"
+export { GetActionBar } from "./services/get-action-bar";
