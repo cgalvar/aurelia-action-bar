@@ -1,5 +1,5 @@
 import {autoinject} from 'aurelia-framework';
-import { Awaitable } from 'services/awaitable';
+import { Awaitable } from '../services/awaitable';
 import { Subscription } from 'aurelia-event-aggregator';
 
 @autoinject()
